@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+活动网站主界面
+{% endblock %}
+{% block style %}
+.btn1{
+    font-family: 'Comic Sans MS',cursive,sans-serif; /*字体样式的设计*/
+            width: 40%;
+            padding: 8px;
+            font-size: 18px;
+            background-color: #FF6EC7;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 3s ease;
+            font-weight: bold;
+    }
+.btn1:hover {
+        background-color: #ce91ff;
+        box-shadow: 5px 5px 10px rgba(255, 105, 205, 0.5),
+                    0 0 25px rgba(255, 105, 205, 0.5),
+                    0 0 45px rgba(255, 105, 205, 0.5);
+        color: #ecff6e;
+        /*background-color: #6effd8;*//*闪不拉几的*/
+    }
+{% endblock %}
+{% block content %}
+    <h1>欢迎来到校园活动征召平台喵</h1>
+    <center><div>欢迎喵~{{ name }}酱</div></center>
+    <a href="/logout/">
+    <button id="logout-btn" class="btn1">退出登录喵</button>
+</a>
+{% endblock %}

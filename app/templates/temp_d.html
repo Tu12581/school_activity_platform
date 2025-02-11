@@ -1,0 +1,143 @@
+                                                                                                                                        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI猫娘搜索页面</title>
+    <style>
+        /* 设置页面整体样式 */
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('../static/maoniang1.jpg'); /* 替换为实际图片路径 */
+            background-size: cover; /* 背景图片覆盖整个页面 */
+            background-position: center; /* 背景居中显示 */
+            background-repeat: no-repeat; /* 不重复背景图片 */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* 页面高度占满视窗 */
+        }
+
+        /* 搜索容器样式 */
+        #search-container {
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+            border-radius: 15px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px; /* 最大宽度 */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center; /* 内容居中 */
+        }
+
+        /* 标题样式 */
+        h1 {
+            font-size: 2.5rem;
+            color: #FF6EC7; /* 粉色字体 */
+            margin-bottom: 20px;
+        }
+
+        /* 输入框和选择框样式 */
+        input[type="text"], select, input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            border: 2px solid #FF6EC7;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus, select:focus, input[type="file"]:focus {
+            border-color: #FF91D1;
+            box-shadow: 0 0 10px rgba(255, 105, 205, 0.5);
+        }
+
+        /* 按钮样式 */
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            background-color: #FF6EC7;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #FF91D1;
+        }
+
+        /* 查询结果样式 */
+        .output-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 20px;
+            width: 550px; /* Fixed width for the output box */
+            height: 100px; /* Fixed height for the output box */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: auto; /* Add a scrollbar if content overflows */
+        }
+
+        /* 装饰图片样式 */
+        .decorations {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .decorations img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%; /* 圆形效果 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .decorations img:hover {
+            transform: scale(1.2); /* 放大效果 */
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div id="search-container">
+            <h1>AI猫娘搜索</h1>
+
+            <!-- 装饰图片 -->
+            <div class="decorations">
+                <img src="../static/maoniang.jpg" alt="装饰1">
+            </div>
+
+            <!-- 搜索表单 -->
+            <label for="search_box">主人请下面搜索喵~</label>
+            <input type="text" id="search_box" name="box" placeholder="请输入要搜索的内容">
+            <select id="search_box" name="search_choice">
+                <option value="mode1">结合现有文档搜索</option>
+                <option value="mode2">联网搜索</option>
+                <option value="mode3">联网搜索-手动爬虫版</option>
+                <option value="mode4">利用gpt3.5API搜索</option>
+                <option value="mode5">利用本地存储库搜索</option>
+            </select>
+            <button type="submit" id="search-btn">搜索</button>
+            <input type="file" id="file_box" name="related_filename">
+            <button type="submit" id="file-btn">上传文件</button>
+        </div>
+
+        <!-- 查询结果 -->
+        <div class="output-box">
+            查询结果为：
+            <div>{{n1}}</div>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Connections Ver="1.5">
+	<Connection ConnectionName="校园活动征召平台" ProjectUUID="" ConnType="MYSQL" ServiceProvider="Default" Host="localhost" Port="3306" UserName="root" Password="330852E93AA718CD359466D68ECFF0C6" SavePassword="true" SettingsSavePath="C:\Users\37228\Documents\Navicat\MySQL\Servers\校园活动征召平台" SessionLimit="0" InitialSessionQueries="" ClientDriverVersion="Default" ClientCharacterSet="" ClientEncoding="65001" Keepalive="false" UseConnectionTimeout="true" ConnectionTimeoutSeconds="30" UseReadTimeout="false" UseWriteTimeout="true" WriteTimeoutSeconds="30" Encoding="65001" MySQLCharacterSet="true" Compression="false" AutoConnect="false" NamedPipe="false" UseAdvanced="false" SSL="false" SSH="false" HTTP="false" Compatibility="false" Remarks=""/>
+</Connections>
+

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册界面</title>
+    <style>  /*用于设计界面
+        /*界面整体样式*/
+        body {
+            font-family: 'Comic Sans MS',cursive,sans-serif; /*字体样式的设计*/
+            margin: 0;
+            padding: 0;
+            background-image: url("../static/img/img2.jpg");
+            background-size: cover; /*覆盖整个页面*/
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #333;
+            /*调整页面整体布局*/
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        /* 注册界面小框样式 */
+        #register {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 30px;  /*长宽*/
+            width: 90%;
+            max-width: 500px;  /*延申出去的最大宽度设置*/
+            /* x 偏移量 | y 偏移量 | 阴影模糊半径 | 阴影颜色 */
+            box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.2);  /*阴影设置*/
+            text-align: center; /* 内容居中 */
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #6e97ff; /* 粉色字体 */
+            margin-bottom: 20px;
+        }
+
+        /* 输入框和选择框样式 */
+        input[type="text"],input[type='password'],select{
+            font-family: 'Comic Sans MS',cursive,sans-serif; /*字体样式的设计*/
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            border: 2px solid #6effd8;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        input[type='text']:focus,select:focus,input[type='password']:focus{
+            border-color: #FF91D1;
+            box-shadow: 5px 5px 10px rgba(255, 105, 205, 0.5);
+        }
+        label {
+            font-family: 'Comic Sans MS',cursive,sans-serif; /*字体样式的设计*/
+            color: #FF6EC7
+        }
+
+        button {
+            font-family: 'Comic Sans MS',cursive,sans-serif; /*字体样式的设计*/
+            width: 60%;
+            padding: 12px;
+            font-size: 18px;
+            background-color: #FF6EC7;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 3s ease;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+        }
+        button:hover {
+            background-color: #ce91ff;
+            box-shadow: 5px 5px 10px rgba(255, 105, 205, 0.5),
+                        0 0 25px rgba(255, 105, 205, 0.5),
+                        0 0 45px rgba(255, 105, 205, 0.5);
+            color: #ecff6e;
+            /*background-color: #6effd8;*//*闪不拉几的*/
+        }
+        /* 下面三个都用于改变装饰图片样式 */
+        .decorations {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            object-fit: scale-down;
+        }
+        .decorations img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%; /* 圆形效果 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);/* 阴影效果效果 */
+            transition: transform 0.3s ease;
+        }
+        .decorations img:hover {
+            transform: scale(1.2); /* 当鼠标移上去后会有放大效果 */
+        }
+        a {
+            font-family: 'Comic Sans MS',cursive,sans-serif; /*字体样式的设计*/
+            color: #ecff6e;
+        }
+        /*给链接写一个鼠标放上去后的动态效果*/
+        a:hover{
+            color: #FF6EC7
+        }
+    </style>
+</head>
+<body>
+<form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id = 'register'>
+        <h1>这里是用户注册入口喵~</h1>
+        <!-- 装饰图片 -->
+        <div class="decorations">
+            <img src="../static/img/img1.jpg" alt="装饰1">
+        </div>
+        <label for="register_box">请在这个地方注册喵~谢谢喵</label>
+        <input type="text" id="user_name_box" name="user_name" placeholder="请在这里输入用户名喵">
+        <input type="password" id="password_box" name="password" placeholder="请在这里输入密码喵" >
+        <select id="register_type" name="register_choice">
+            <option value="user">普通用户注册喵</option>
+            <option value="admin">管理员注册喵</option>
+        </select>
+        <center>
+            <button id="register_btn">注册</button>
+        </center>
+        <a href="/login/">点这里返回登录界面喵</a>
+    </div>
+</form>
+<!--后台传递messages参数，判断是否有用户名为空的情况-->
+{% if messages %}
+<script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}');
+        {% endfor %}
+</script>
+{% endif %}
+</body>
+</html>
