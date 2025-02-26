@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +21,7 @@ body, html {
     font-family: 'Comic Sans MS',cursive,sans-serif; /*字体样式的设计*/
     font-weight: bold;
     background-color: #f8f8f8;
-    background-image: url("../static/img/img4.jpg");
+    background-image: url("{% static 'img/img4.jpg' %}");
     background-size: cover; /*覆盖整个页面*/
     background-position: center;
     background-repeat: no-repeat;
@@ -123,14 +124,14 @@ nav ul li a:hover {
 <body>
 <header>
         <div class="logo">
-            <a href="#">个人主页</a>
+            <a href="{% url 'index' user_id=user_id %}">个人主页</a>
         </div>
         <!--顶部导航栏设计-->
         <!--li用于定义列表项，前面有点的部分，表示在同一个列表中-->
         <nav>
             <ul>
-                <li><a href="/index/">首页</a></li>
-                <li><a href="#">查看活动</a></li>
+                <li><a href="">首页</a></li>
+                <li><a href="/activity_browse/">查看活动</a></li>
                 <li><a href="#">申请记录查询</a></li>
                 <li><a href="#">联系我们</a></li>
             </ul>

@@ -5,16 +5,20 @@
 {% block style %}
 .btn1{
     font-family: 'Comic Sans MS',cursive,sans-serif; /*字体样式的设计*/
-            width: 40%;
-            padding: 8px;
-            font-size: 18px;
+            width: 6%;
+            padding: 10px;
+            font-size: 16px;
             background-color: #FF6EC7;
             color: white;
             border: none;
-            border-radius: 25px;
+            border-radius: 20px;
             cursor: pointer;
             transition: background-color 3s ease;
             font-weight: bold;
+            /*更改位置*/
+            position: absolute;
+            top: 870px;
+            left:1450px;
     }
 .btn1:hover {
         background-color: #ce91ff;
@@ -22,13 +26,13 @@
                     0 0 25px rgba(255, 105, 205, 0.5),
                     0 0 45px rgba(255, 105, 205, 0.5);
         color: #ecff6e;
-        /*background-color: #6effd8;*//*闪不拉几的*/
+        background-color: #6effd8;
     }
 {% endblock %}
 {% block content %}
-    <h1>欢迎来到校园活动征召平台喵</h1>
     <center><div>欢迎喵~{{ name }}酱</div></center>
     <a href="/logout/">
-    <button id="logout-btn" class="btn1">退出登录喵</button>
-</a>
+    <button id="logout-btn" class="btn1">这里退出登录喵</button>
+    </a>
+    <
 {% endblock %}
