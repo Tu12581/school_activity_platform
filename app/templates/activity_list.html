@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+活动管理页
+{% endblock %}
+{% block style %}
+#activity{
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 30px;  /*长宽*/
+    width: 90%;
+    max-width: 500px;  /*延申出去的最大宽度设置*/
+    /* x 偏移量 | y 偏移量 | 阴影模糊半径 | 阴影颜色 */
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.2);  /*阴影设置*/
+    text-align: center; /* 内容居中 */
+    position: absolute;
+            top: 200px;
+            left:500px;
+    overflow:auto;  /*设置滚动条*/
+    }
+{% endblock %}
+{% block content %}
+    <div id="activity">
+    <h2>活动管理</h2>
+    {% for a in activity %}
+        <a href="/activity/?id={{ a.ac_id }}">{{ a.ac_pe }}</a>
+        <br>
+    {% endfor %}
+    </div>
+{% endblock %}

@@ -1,12 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>活动介绍界面</title>
-</head>
-<body>
-<form method="post" action="">
+{% extends 'base.html' %}
+{% block title %}
+活动发布页
+{% endblock %}
+{% block style %}
+    #activity{
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 30px;  /*长宽*/
+    width: 90%;
+    max-width: 500px;  /*延申出去的最大宽度设置*/
+    /* x 偏移量 | y 偏移量 | 阴影模糊半径 | 阴影颜色 */
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.2);  /*阴影设置*/
+    text-align: center; /* 内容居中 */
+    position: absolute;
+            top: 200px;
+            left:500px;
+    }
 
-</form>
-</body>
-</html>
+    #activity_name{
+        font-family: 'Comic Sans MS',cursive,sans-serif; /*字体样式的设计*/
+        width: 80%;
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 15px;
+        border: 2px solid #6effd8;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        }
+
+    #active_content{
+        font-family: 'Comic Sans MS',cursive,sans-serif; /*字体样式的设计*/
+        width: 80%;
+        padding: 18px;
+        font-size: 16px;
+        margin-bottom: 15px;
+        border: 2px solid #6effd8;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+    }
+
+    #active_place{
+    font-family: 'Comic Sans MS',cursive,sans-serif; /*字体样式的设计*/
+    width: 30%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border: 2px solid #6effd8;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    }
+
+    div{
+    font-family: 'Comic Sans MS',cursive,sans-serif;
+    }
+
+    input[type="date"]{
+            font-family: 'Comic Sans MS',cursive,sans-serif; /*字体样式的设计*/
+            width: 30%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            border: 2px solid #6effd8;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+    input[type='date']:focus{
+        border-color: #FF91D1;
+        box-shadow: 5px 5px 10px rgba(255, 105, 205, 0.5);
+    }
+
+    .btn1{
+    font-family: 'Comic Sans MS',cursive,sans-serif; /*字体样式的设计*/
+            width: 30%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #FF6EC7;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 3s ease;
+            font-weight: bold;
+    }
+.btn1:hover {
+        background-color: #ce91ff;
+        box-shadow: 5px 5px 10px rgba(255, 105, 205, 0.5),
+                    0 0 25px rgba(255, 105, 205, 0.5),
+                    0 0 45px rgba(255, 105, 205, 0.5);
+        color: #ecff6e;
+        background-color: #6effd8;
+    }
+
+{% endblock %}
+{% block content %}
+    <form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id="activity">
+        <label for="activity">在这里发布活动喵</label>
+        <input type="text" id="activity_name" name="activity_name" placeholder="活动名称是什么喵">
+        <div>活动内容在这下面填写喵</div>
+        <input type="text" id="active_content" name="active_content" placeholder="在这里填写活动内容喵">
+        <input type="date" id="active_time" name="active_time" placeholder="活动时间是什喵">
+        <input type="text" id="active_place" name="active_place" placeholder="活动在哪举行喵">
+        <button class="btn1" id="submit">提交</button>
+    </div>
+    </form>
+    {% if messages %}
+    <script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}');
+        {% endfor %}
+    </script>
+    {% endif %}
+{% endblock %}
