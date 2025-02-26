@@ -63,6 +63,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                # 该上下文处理器，用于自动传递userid
+                'app.context_processors.user_info',
             ],
         },
     },

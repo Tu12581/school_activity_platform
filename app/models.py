@@ -55,7 +55,7 @@ class Activity(models.Model):
     acdesc = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         app_label = 'app'
         db_table = 'activity'
 
