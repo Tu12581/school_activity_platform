@@ -16,14 +16,25 @@ Including another URLconf
 """
 # from django.contrib import admin
 from django.urls import path
-from app import views
+# from app import views
+from app.views import *
+from app.views import login, admin, activities
 
 urlpatterns = [
     #    path("admin/", admin.site.urls),
-    path("login/",views.login),
-    path("register/",views.register),
-    path("index/",views.index),
-    path("activity_browse/",views.  activity_browse),
-    path("main_page/",views.main_page),
-    path('logout/', views.logout, name='logout'), #退出
+    path("login/",login.login),
+    path("register/",login.register),
+    path("index/<int:user_id>/",login.index, name="index"),
+    # 这里的动态参数是传递给视图函数的，给视图函数使用
+    path('logout/', login.logout, name='logout'), #退出
+    path('test/', login.test),
+    path("activity_browse/",admin.activity_browse),
+    path('activity_manage/', admin.activity_manage),
+    path('activity/',activities.activity_detail, name='activity_detail'),
+    # 当用户访问 /activity/ 时，activity_view 视图会检查是否有 id 查询参数。
+    # 如果没有 id 参数，视图会渲染 activity_list.html，显示所有活动的列表。
+    # 如果用户点击某个活动的链接（例如 /activity/?id=1），视图会根据 id 查询数据库，获取对应的活动对象，并渲染 activity_detail.html，显示该活动的详细信息。
+    path('del_activity/',admin.del_activity, name='del_activity'),
+    path('add_activity/',admin.add_activity, name='add_activity'),
+    path("main_page/",activities.main_page),
 ]
