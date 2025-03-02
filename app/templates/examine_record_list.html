@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+活动详情页面
+{% endblock %}
+{% block style %}
+#examine_record{
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 30px;  /*长宽*/
+    width: 90%;
+    max-width: 500px;  /*延申出去的最大宽度设置*/
+    /* x 偏移量 | y 偏移量 | 阴影模糊半径 | 阴影颜色 */
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.2);  /*阴影设置*/
+    text-align: center; /* 内容居中 */
+    position: absolute;
+            top: 200px;
+            left:500px;
+    overflow:auto;  /*设置滚动条*/
+    }
+{% endblock %}
+{% block content %}
+    <div id="examine_record">
+    <h2>审核记录表</h2>
+    {% for page in page_obj %}
+        <nav>
+        <li>
+            {{ page.exam_id }}、审核申请:{{ page.req_id }}--审核员:{{ page.admin_id }}--审核日期:{{ page.exam_date }}
+        </li>
+        </nav>
+    {% endfor %}
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; 第一页</a>
+            <a href="?page={{ page_obj.previous_page_number }}">上一页</a>
+        {% endif %}
+
+        <span class="current">
+            第 {{ page_obj.number }} 页, 共有{{ page_obj.paginator.num_pages }} 页
+        </span>
+
+        <span>
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">下一页</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">最后一页</a>
+        {% endif %}
+        </span>
+    </span>
+    </div>
+{% endblock %}
