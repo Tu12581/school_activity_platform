@@ -17,13 +17,64 @@
             left:500px;
     overflow:auto;  /*设置滚动条*/
     }
+.btn1{
+    font-family: 'Comic Sans MS',cursive,sans-serif; /*字体样式的设计*/
+    width: 15%;
+    padding: 10px;
+    font-size: 10px;
+    background-color: #FF6EC7;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 3s ease;
+    font-weight: bold;
+    }
+.btn1:hover {
+        background-color: #ce91ff;
+        box-shadow: 5px 5px 10px rgba(255, 105, 205, 0.5),
+                    0 0 25px rgba(255, 105, 205, 0.5),
+                    0 0 45px rgba(255, 105, 205, 0.5);
+        color: #ecff6e;
+        background-color: #6effd8;
+    }
 {% endblock %}
 {% block content %}
     <div id="activity">
     <h2>活动管理</h2>
-    {% for a in activity %}
+    {% for a in page_obj %}
         <a href="/activity/?id={{ a.ac_id }}">{{ a.ac_pe }}</a>
+        <!--当且仅当当前用户是管理员的时候才会显示删除按钮-->
+        {% if user_role == 'admin' %}
+            <a href="/del_activity/?id={{ a.ac_id }}">
+                <button id="delete-btn" class="btn1">删除活动</button>
+            </a>
+            <a href="/edit_activity/?id={{ a.ac_id }}">
+                <button id="edit-btn" class="btn1">修改活动</button>
+            </a>
+        {% else %}
+            <a href="">
+                <button id="apply-btn" class="btn1">申请参与</button>
+            </a>
+        {% endif %}
         <br>
     {% endfor %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; 第一页</a>
+                <a href="?page={{ page_obj.previous_page_number }}">上一页</a>
+            {% endif %}
+
+            <span class="current">
+                第 {{ page_obj.number }} 页，共 {{ page_obj.paginator.num_pages }} 页
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">下一页</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">最后一页 &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
     </div>
 {% endblock %}
