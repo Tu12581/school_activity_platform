@@ -22,5 +22,11 @@
     <div id="activity">
     <h2>活动详情</h2>
     {{ activity.ac_id }}
+    {{ activity.ac_pe }}
+    {{ activity.acdesc }}
     </div>
+    <a href="/activity_apply/?id={{ activity.ac_id }}">
+        <button id="apply" name="apply" class="btn-3">申请活动</button>
+    </a>
+
 {% endblock %}
