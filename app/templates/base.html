@@ -126,14 +126,23 @@ nav ul li a:hover {
         <div class="logo">
             <a href="{% url 'index' user_id=user_id %}">个人主页</a>
         </div>
+        <form method="post" action="/activity_search/">
+            {% csrf_token %}
+            <label for="search"></label>
+            <input type="text" id="search" name="search" placeholder="在这里寻找你要的活动喵">
+            <button id="search-btn" name="search-btn" class="btn2">搜索喵</button>
+        </form>
         <!--顶部导航栏设计-->
         <!--li用于定义列表项，前面有点的部分，表示在同一个列表中-->
         <nav>
             <ul>
                 <li><a href="">首页</a></li>
-                <li><a href="/activity_browse/">查看活动</a></li>
                 <li><a href="#">申请记录查询</a></li>
-                <li><a href="#">联系我们</a></li>
+                {% if user_role == 'admin' %}
+                    <li><a href="/activity_manage/">活动管理</a></li>
+                    <li><a href="/activity_browse/">发布活动</a></li>
+                    <li><a href="/apply_examine/">审核申请</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
