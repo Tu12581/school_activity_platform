@@ -7,6 +7,7 @@ def user_info(request):
         return {
             'user_id': request.user.user_id,
             'user_name': request.user.user_name,
+            'user_role': request.user.role, # 用户身份，用于前端是否显示删除按钮
         }
     # 如果用户未登录，返回空字典
     return {}
