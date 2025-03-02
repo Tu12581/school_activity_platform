@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}
+活动申请审核界面
+{% endblock %}
+{% block style %}
+    #apply{
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 30px;  /*长宽*/
+    width: 90%;
+    max-width: 500px;  /*延申出去的最大宽度设置*/
+    /* x 偏移量 | y 偏移量 | 阴影模糊半径 | 阴影颜色 */
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.2);  /*阴影设置*/
+    text-align: center; /* 内容居中 */
+    position: absolute;
+            top: 200px;
+            left:500px;
+    overflow:auto;  /*设置滚动条*/
+    }
+.btn1{
+        font-family: 'Comic Sans MS',cursive,sans-serif; /*字体样式的设计*/
+        width: 15%;
+        padding: 10px;
+        font-size: 10px;
+        background-color: #FF6EC7;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 3s ease;
+        font-weight: bold;
+    }
+.btn1:hover {
+        background-color: #ce91ff;
+        box-shadow: 5px 5px 10px rgba(255, 105, 205, 0.5),
+                    0 0 25px rgba(255, 105, 205, 0.5),
+                    0 0 45px rgba(255, 105, 205, 0.5);
+        color: #ecff6e;
+        background-color: #6effd8;
+    }
+{% endblock %}
+{% block content %}
+    <div id="apply">
+    {% for page in page_obj %}
+        <!--每一个page都对应该页面的一个apply的存储对象-->
+        <a href="">申请人:{{ page.user_id }}--申请活动:{{ page.ac_id }}</a>
+        <a href="/approve_apply/?id={{ page.req_id }}">
+            <button id="approve-btn" class="btn1">
+                批准申请
+            </button>
+        </a>
+        <a href="/reject_apply/?id={{ page.req_id }}">
+            <button id="reject-btn" class="btn1">
+                拒绝申请
+            </button>
+        </a>
+        <br>
+        <br>
+    {% endfor %}
+    <!--此段用于申请导航的分页机制-->
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; 第一页</a>
+                <a href="?page={{ page_obj.previous_page_number }}">上一页</a>
+            {% endif %}
+
+            <span class="current">
+                第 {{ page_obj.number }} 页，共 {{ page_obj.paginator.num_pages }} 页
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">下一页</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">最后一页 &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    </div>
+{% endblock %}
